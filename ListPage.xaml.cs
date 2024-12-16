@@ -4,10 +4,10 @@ namespace BlagaTeodoraLab7;
 
 public partial class ListPage : ContentPage
 {
-	public ListPage()
-	{
-		InitializeComponent();
-	}
+    public ListPage()
+    {
+        InitializeComponent();
+    }
 
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
@@ -24,9 +24,25 @@ public partial class ListPage : ContentPage
         await Navigation.PopAsync();
     }
 
+    async void OnDeleteItemButtonClicked(object sender, EventArgs e)
+    {
+        Product product;
+        var shopList = (ShopList)BindingContext;
+        if (listView.SelectedItem != null)
+        {
+            product = listView.SelectedItem as Product;
+
+            var listProductAll = await App.Database.GetListProducts();
+
+            var listProduct = listProductAll.FindAll(x => x.ProductID == product.ID & x.ShopListID == shopList.ID);
+
+            await App.Database.DeleteListProductAsync(listProduct.FirstOrDefault());
+        }
+    }
+
     async void OnChooseButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ProductPage((ShopList) this.BindingContext)
+        await Navigation.PushAsync(new ProductPage((ShopList)this.BindingContext)
         {
             BindingContext = new Product()
         });

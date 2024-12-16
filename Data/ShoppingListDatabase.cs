@@ -89,5 +89,15 @@ namespace BlagaTeodoraLab7.Data
         {
             return _database.DeleteAsync(slist);
         }
+
+        public Task<int> DeleteListProductAsync(ListProduct slist)
+        {
+            return _database.DeleteAsync(slist);
+        }
+
+        public Task<List<ListProduct>> GetListProducts()
+        {
+            return _database.QueryAsync<ListProduct>("select * from ListProduct");
+        }
     }
 }
