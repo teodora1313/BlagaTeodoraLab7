@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BlagaTeodoraLab7"
              x:Class="BlagaTeodoraLab7.ListPage"
              Title="ListPage">
 
     <StackLayout Margin="20">
-        <Editor Placeholder="Enter the description of the shopping list" Text="{Binding Description}" HeightRequest="50" />
+        <Editor Placeholder="Enter the description of the shopping list" Text="{Binding Description}" HeightRequest="50" >
+            <Editor.Behaviors>
+                <local:ValidationBehaviour />
+            </Editor.Behaviors>
+        </Editor>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
