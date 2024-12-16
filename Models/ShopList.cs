@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 using MaxLengthAttribute = SQLite.MaxLengthAttribute;
 
 namespace BlagaTeodoraLab7.Models
@@ -18,5 +19,8 @@ namespace BlagaTeodoraLab7.Models
         public string Description { get; set; }
 
         public DateTime Date { get; set; }
+
+        [ForeignKey(typeof(Shop))]
+        public int ShopID { get; set; }
     }
 }
